@@ -16,19 +16,19 @@ class Tutorial1 {
     */
     func saveAsPPM(frame: UnsafePointer<AVFrame>, filePath: String, width: Int, height: Int) -> Bool {
         // ファイルを開く
-        var file = fopen(filePath.cStringUsingEncoding(NSUTF8StringEncoding)!, "wb")
+        let file = fopen(filePath.cStringUsingEncoding(NSUTF8StringEncoding)!, "wb")
         if file == nil { return false }
         
         // ヘッダーを書き込む
         let header = "P6\n\(width) \(height)\n255\n"
-        fwrite(header.cStringUsingEncoding(NSUTF8StringEncoding)!, 1, UInt(countElements(header)), file)
+        fwrite(header.cStringUsingEncoding(NSUTF8StringEncoding)!, 1, header.characters.count, file)
         
         // ピクセルデータを書き込む
         for i in 0..<height {
 
             
             let y = UnsafeBufferPointer(start: frame.memory.data.0 + i * Int(frame.memory.linesize.0), count: width * 3)
-            fwrite(y.baseAddress, 1, UInt(width * 3), file)
+            fwrite(y.baseAddress, 1, width * 3, file)
         }
         if fclose(file) != 0 {
             return false
