@@ -8,6 +8,6 @@
 
 import Foundation
 
-println("Hello, World!")
+print("Hello, World!")
 
 Tutorial1().main("/Users/tottokotkd/test.mp4")

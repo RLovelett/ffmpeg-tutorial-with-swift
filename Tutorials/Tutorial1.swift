@@ -40,7 +40,7 @@ class Tutorial1 {
     映像をデコードする
     */
     func decodeVideo(codecContext: UnsafeMutablePointer<AVCodecContext>, frame: UnsafeMutablePointer<AVFrame>, packet: UnsafeMutablePointer<AVPacket>) -> Bool {
-        var finished = UnsafeMutablePointer<Int32>.alloc(1)
+        let finished = UnsafeMutablePointer<Int32>.alloc(1)
         avcodec_decode_video2(codecContext, frame, finished, packet)
         return finished.memory.bool
     }
@@ -48,10 +48,10 @@ class Tutorial1 {
     /**
     sws_scaleを実行する
     
-    :param: option SwsContextの設定を入力したSwsContextOptionインスタンス
-    :param: source 変換前のフレーム
-    :param: target 変換後のフレーム: バッファーを持っていなければならない！
-    :returns:
+    - parameter option: SwsContextの設定を入力したSwsContextOptionインスタンス
+    - parameter source: 変換前のフレーム
+    - parameter target: 変換後のフレーム: バッファーを持っていなければならない！
+    - returns:
     */
     func swsScale(option: SwsContext, source: UnsafePointer<AVFrame>, target: UnsafePointer<AVFrame>, height: Int32) -> Int {
         
@@ -115,13 +115,13 @@ class Tutorial1 {
         // ファイルを開く
         var formatContext  = UnsafeMutablePointer<AVFormatContext>()
         if avformat_open_input(&formatContext, filePath, nil, nil) != 0 {
-            println("Couldn't open file")
+            print("Couldn't open file")
             return
         }
         
         // ストリームの情報を得る
         if avformat_find_stream_info(formatContext, nil) < 0 {
-            println("Couldn't find stream information")
+            print("Couldn't find stream information")
             return
         }
         
@@ -135,13 +135,13 @@ class Tutorial1 {
         
         for i in 0..<Int(formatContext.memory.nb_streams) {
             let s = formatContext.memory.streams[i]
-            if s.memory.codec.memory.codec_type.value == target.value {
+            if s.memory.codec.memory.codec_type.rawValue == target.rawValue {
                 avStream = s
                 n = i
             }
         }
         if avStream == nil {
-            println("Didn't find a video stream")
+            print("Didn't find a video stream")
             return
         }
         
@@ -151,13 +151,13 @@ class Tutorial1 {
         // 映像ストリームのデコーダーを探す
         let codec = avcodec_find_decoder(codecContext.memory.codec_id)
         if codec == nil {
-            println("Unsupported codec")
+            print("Unsupported codec")
             return
         }
         
         // コーデックを開く
         if avcodec_open2(codecContext, codec, nil) < 0 {
-            println("Could not open codec")
+            print("Could not open codec")
             return
         }
         
@@ -173,13 +173,13 @@ class Tutorial1 {
         let h = codecContext.memory.height
         let format = PIX_FMT_BGR24
         let size = avpicture_get_size(PIX_FMT_BGR24, w, h)
-        var buffer = [UInt8](count: Int(size), repeatedValue: 0)
+        let buffer = [UInt8](count: Int(size), repeatedValue: 0)
         
         // フレームにバッファーを割り当てる
         avpicture_fill(UnsafeMutablePointer<AVPicture>(convertedFrame), UnsafePointer<UInt8>(buffer), format, w, h)
         
         // パケットを用意
-        var packet = UnsafeMutablePointer<AVPacket>.alloc(1)
+        let packet = UnsafeMutablePointer<AVPacket>.alloc(1)
         
         // フレームを読み込む
         var i = 0
