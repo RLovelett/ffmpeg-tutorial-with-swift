@@ -181,6 +181,9 @@ class Tutorial1 {
     // パケットを用意
     let packet = UnsafeMutablePointer<AVPacket>.alloc(1)
 
+    // 画像をRGB形式に変換。サイズはデフォルト (ソースと同じ)
+    let swsContextOption = sws_getContext(codecContext.memory.width, codecContext.memory.height, codecContext.memory.pix_fmt, w, h, PIX_FMT_RGB24, SWS_BILINEAR, nil, nil, nil)
+
     // フレームを読み込む
     var i = 0
     while av_read_frame(formatContext, packet) >= 0  {
@@ -188,13 +191,6 @@ class Tutorial1 {
       if packet.memory.stream_index == Int32(n) {
         // パケットに保存したデータから映像フレームをデコードできたら実行
         if decodeVideo(codecContext, frame: frame, packet: packet) {
-
-          // 画像をRGB形式に変換。サイズはデフォルト (ソースと同じ)
-          let swsContextOption = sws_getContext(
-            codecContext.memory.width,
-            codecContext.memory.height,
-            codecContext.memory.pix_fmt,
-            w, h, PIX_FMT_RGB24, SWS_BILINEAR, nil, nil, nil)
           swsScale(swsContextOption, source: frame, target: convertedFrame, height: h)
 
           // 100フレームごとに1つ保存
@@ -207,6 +203,8 @@ class Tutorial1 {
       av_free_packet(packet)
     }
 
+    sws_freeContext(swsContextOption)
+
     // フレームのメモリーを開放する
     av_frame_free(&frame)
     av_frame_free(&convertedFrame)
@@ -216,5 +214,6 @@ class Tutorial1 {
 
     // 動画ファイルを閉じる
     avformat_close_input(&formatContext)
+    avformat_free_context(formatContext)
   }
 }
