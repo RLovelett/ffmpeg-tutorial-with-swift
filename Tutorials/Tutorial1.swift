@@ -17,6 +17,7 @@ class Tutorial1 {
   func saveAsPPM(frame: UnsafePointer<AVFrame>, filePath: String, width: Int, height: Int) -> Bool {
     // ファイルを開く
     let file = fopen(filePath.cStringUsingEncoding(NSUTF8StringEncoding)!, "wb")
+    defer { fclose(file) }
     if file == nil { return false }
 
     // ヘッダーを書き込む
