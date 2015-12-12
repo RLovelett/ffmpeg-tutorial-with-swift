@@ -62,12 +62,20 @@
 		9222D19C1A70C0290072B497 /* Tutorials */ = {
 			isa = PBXGroup;
 			children = (
+				94929F571C05FF7B00F2C7A1 /* Classes */,
 				9222D1AC1A70C0620072B497 /* Tutorials-Bridging-Header.h */,
 				9222D19D1A70C0290072B497 /* main.swift */,
 				9222D1AF1A70C0C80072B497 /* Tutorial1.swift */,
 				9222D1B11A70C33B0072B497 /* extensions.swift */,
 			);
 			path = Tutorials;
+			sourceTree = "<group>";
+		};
+		94929F571C05FF7B00F2C7A1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

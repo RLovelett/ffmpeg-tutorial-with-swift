@@ -193,10 +193,9 @@ class Tutorial1 {
         // パケットに保存したデータから映像フレームをデコードできたら実行
         if decodeVideo(codecContext, frame: frame, packet: packet) {
           swsScale(swsContextOption, source: frame, target: convertedFrame, height: h)
-
           // 100フレームごとに1つ保存
           if ++i % 100 == 0 {
-            saveAsPPM(convertedFrame, filePath: "/Users/lovelett/Desktop/frames/frame\(i).ppm", width: Int(w), height: Int(h))
+            saveAsPPM(convertedFrame, filePath: "/Users/ryan/Desktop/frames/frame\(i).ppm", width: Int(w), height: Int(h))
           }
         }
       }

@@ -10,4 +10,4 @@ import Foundation
 
 print("Hello, World!")
 
-Tutorial1().main("/Users/lovelett/Desktop/test.m4v")
+Tutorial1().main("/Users/ryan/Desktop/test.ts")
