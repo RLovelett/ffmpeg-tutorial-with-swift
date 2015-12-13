@@ -13,7 +13,10 @@ guard let filePath = Process.arguments.reverse().first else {
     exit(1)
 }
 
-let file = AVFile(path: filePath)
+// ¯\_(ツ)_/¯
+av_register_all()
+
+let file = try? AVFile(path: filePath)
 
 /**
 Input #0, mpegts, from '/Users/ryan/Desktop/test.ts':

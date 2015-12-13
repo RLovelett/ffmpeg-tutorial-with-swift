@@ -11,6 +11,7 @@
 		9222D1B01A70C0C80072B497 /* Tutorial1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9222D1AF1A70C0C80072B497 /* Tutorial1.swift */; };
 		9222D1B21A70C33B0072B497 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9222D1B11A70C33B0072B497 /* extensions.swift */; };
 		94B7F3451C1C94E600E738B9 /* AVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B7F3441C1C94E600E738B9 /* AVFile.swift */; };
+		94B7F3481C1CDDC200E738B9 /* AVFormatContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B7F3471C1CDDC200E738B9 /* AVFormatContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +33,7 @@
 		9222D1AF1A70C0C80072B497 /* Tutorial1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial1.swift; sourceTree = "<group>"; };
 		9222D1B11A70C33B0072B497 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		94B7F3441C1C94E600E738B9 /* AVFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFile.swift; sourceTree = "<group>"; };
+		94B7F3471C1CDDC200E738B9 /* AVFormatContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFormatContext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		9222D19C1A70C0290072B497 /* Tutorials */ = {
 			isa = PBXGroup;
 			children = (
+				94B7F3461C1CDDAC00E738B9 /* Extensions */,
 				94929F571C05FF7B00F2C7A1 /* Classes */,
 				9222D1AC1A70C0620072B497 /* Tutorials-Bridging-Header.h */,
 				9222D19D1A70C0290072B497 /* main.swift */,
@@ -79,6 +82,14 @@
 				94B7F3441C1C94E600E738B9 /* AVFile.swift */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		94B7F3461C1CDDAC00E738B9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				94B7F3471C1CDDC200E738B9 /* AVFormatContext.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 			files = (
 				9222D19E1A70C0290072B497 /* main.swift in Sources */,
 				9222D1B01A70C0C80072B497 /* Tutorial1.swift in Sources */,
+				94B7F3481C1CDDC200E738B9 /* AVFormatContext.swift in Sources */,
 				94B7F3451C1C94E600E738B9 /* AVFile.swift in Sources */,
 				9222D1B21A70C33B0072B497 /* extensions.swift in Sources */,
 			);
